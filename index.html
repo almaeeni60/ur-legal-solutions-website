@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ur Legal Solutions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header img {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        nav {
+            text-align: center;
+            padding: 10px;
+            background: #34495e;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            margin-top: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .language-switch {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Ur Legal Solutions Logo">
+        <h1>Ur Legal Solutions</h1>
+        <p data-lang="en">"We see solutions, not obstacles"</p>
+        <p data-lang="ar" style="display: none;">"نرى الحلول، لا العقبات"</p>
+    </header>
+    
+    <div class="language-switch">
+        <button onclick="switchLanguage('en')">English</button>
+        <button onclick="switchLanguage('ar')">العربية</button>
+    </div>
+    
+    <nav>
+        <a href="#about" data-lang="en">About Us</a>
+        <a href="#about" data-lang="ar" style="display: none;">من نحن</a>
+        <a href="#services" data-lang="en">Services</a>
+        <a href="#services" data-lang="ar" style="display: none;">الخدمات</a>
+        <a href="#blog" data-lang="en">Blog</a>
+        <a href="#blog" data-lang="ar" style="display: none;">المدونة</a>
+        <a href="#contact" data-lang="en">Contact</a>
+        <a href="#contact" data-lang="ar" style="display: none;">اتصل بنا</a>
+    </nav>
+    
+    <div class="container">
+        <section id="about">
+            <h2 data-lang="en">About Us</h2>
+            <h2 data-lang="ar" style="display: none;">من نحن</h2>
+            <p data-lang="en">Ur Legal Solutions is a premier legal firm specializing in oil & gas, corporate law, and international contracts.</p>
+            <p data-lang="ar" style="display: none;">شركة أور للحلول القانونية هي شركة قانونية متخصصة في النفط والغاز والقانون التجاري والعقود الدولية.</p>
+        </section>
+        
+        <section id="services">
+            <h2 data-lang="en">Our Services</h2>
+            <h2 data-lang="ar" style="display: none;">خدماتنا</h2>
+            <ul>
+                <li data-lang="en">Oil & Gas Legal Consultancy</li>
+                <li data-lang="ar" style="display: none;">الاستشارات القانونية للنفط والغاز</li>
+                <li data-lang="en">Corporate & Business Law</li>
+                <li data-lang="ar" style="display: none;">القانون التجاري والشركات</li>
+                <li data-lang="en">Contract Drafting & Negotiation</li>
+                <li data-lang="ar" style="display: none;">صياغة العقود والتفاوض</li>
+            </ul>
+        </section>
+        
+        <section id="blog">
+            <h2 data-lang="en">Blog</h2>
+            <h2 data-lang="ar" style="display: none;">المدونة</h2>
+            <p data-lang="en">Stay updated with the latest legal insights.</p>
+            <p data-lang="ar" style="display: none;">ابق على اطلاع بآخر المستجدات القانونية.</p>
+        </section>
+        
+        <section id="contact">
+            <h2 data-lang="en">Contact Us</h2>
+            <h2 data-lang="ar" style="display: none;">اتصل بنا</h2>
+            <p data-lang="en">Email: contact@urlegalsolutions.com</p>
+            <p data-lang="ar" style="display: none;">البريد الإلكتروني: contact@urlegalsolutions.com</p>
+            <p data-lang="en">Phone: +964-XXX-XXX-XXXX</p>
+            <p data-lang="ar" style="display: none;">الهاتف: +964-XXX-XXX-XXXX</p>
+            <p><a href="mailto:contact@urlegalsolutions.com" class="cta-button" data-lang="en">Get a Free Consultation</a></p>
+            <p><a href="mailto:contact@urlegalsolutions.com" class="cta-button" data-lang="ar" style="display: none;">احصل على استشارة مجانية</a></p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Ur Legal Solutions. All rights reserved.</p>
+    </footer>
+</body>
+</html>
