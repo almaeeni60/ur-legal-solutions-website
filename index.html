@@ -4,201 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ur Legal Solutions</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            scroll-behavior: smooth;
-        }
-        header {
-            background: linear-gradient(135deg, #2c3e50, #1e272e);
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('home-bg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
             color: white;
-            padding: 20px;
+        }
+        header, footer {
+            background-color: rgba(51, 51, 51, 0.8);
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        header img {
-            max-width: 150px;
-            display: block;
-            margin: 0 auto 10px;
-        }
-        nav {
-            text-align: center;
-            padding: 10px;
-            background: #34495e;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-        }
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: all 0.3s;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            background: #f39c12;
-            color: white;
-        }
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            border-radius: 10px;
+            padding: 1rem;
+            animation: fadeIn 1.5s ease-in-out;
         }
         section {
+            padding: 2rem;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-in-out forwards;
         }
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #2c3e50;
-            color: white;
-            margin-top: 20px;
-        }
-        .cta-button {
+        nav ul li {
+            position: relative;
             display: inline-block;
-            background: linear-gradient(135deg, #2980b9, #1e90ff);
+        }
+        nav ul li a {
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
-            font-size: 20px;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: transform 0.3s;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
         }
-        .cta-button:hover {
-            transform: scale(1.1);
-            background: #1f618d;
+        nav ul li a:hover {
+            color: #f8b400;
         }
-        .profile-img {
-            width: 150px;
-            border-radius: 50%;
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: rgba(51, 51, 51, 0.9);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown a {
+            color: white;
+            padding: 10px;
             display: block;
-            margin: 10px auto;
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            text-decoration: none;
         }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                background: #34495e;
-                width: 100%;
-                text-align: center;
-            }
-            .nav-links a {
-                display: block;
-                padding: 10px;
-            }
-            .menu-toggle {
-                display: block;
-            }
+        .dropdown a:hover {
+            background-color: #f8b400;
+        }
+        nav ul li:hover .dropdown {
+            display: block;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let sections = document.querySelectorAll("section");
-            let navLinks = document.querySelectorAll(".nav-links a");
-            let menuToggle = document.querySelector(".menu-toggle");
-            let navMenu = document.querySelector(".nav-links");
-            
-            let observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        document.querySelector(".nav-links a.active")?.classList.remove("active");
-                        document.querySelector(`.nav-links a[href="#${entry.target.id}"]`)?.classList.add("active");
-                        entry.target.classList.add("visible");
-                    }
-                });
-            }, { threshold: 0.3 });
-            
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            navLinks.forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    window.scrollTo({
-                        top: targetSection.offsetTop - 50,
-                        behavior: 'smooth'
-                    });
-                    navMenu.style.display = "none";
-                });
-            });
-            
-            menuToggle.addEventListener("click", function() {
-                navMenu.style.display = navMenu.style.display === "flex" ? "none" : "flex";
-            });
-        });
-    </script>
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="Ur Legal Solutions Logo">
         <h1>Ur Legal Solutions</h1>
-        <p>"We see solutions, not obstacles"</p>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li>
+                    <a href="#services">Services</a>
+                    <div class="dropdown">
+                        <a href="#oil-gas">Oil & Gas Legal Advisory</a>
+                        <a href="#corporate">Corporate & Commercial Law</a>
+                        <a href="#employment">Employment & Labor Law</a>
+                        <a href="#contracts">Contract Drafting & Negotiation</a>
+                        <a href="#litigation">Litigation & Dispute Resolution</a>
+                    </div>
+                </li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#consultation">Consultation</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    
-    <nav>
-        <button class="menu-toggle">☰</button>
-        <div class="nav-links">
-            <a href="#about">About Us</a>
-            <a href="#services">Our Services</a>
-            <a href="#team">Our Team</a>
-            <a href="#blog">Blog</a>
-            <a href="#appointment">Schedule Appointment</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-    
-    <div class="container">
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Ur Legal Solutions is a premier legal firm specializing in oil & gas, corporate law, and international contracts. We provide strategic legal services tailored to businesses, ensuring compliance and mitigating risks in complex legal landscapes.</p>
-        </section>
-    </div>
+
+    <section id="home" style="animation-delay: 0.3s;">
+        <h2>Welcome to Ur Legal Solutions</h2>
+        <p>Providing expert legal services with a focus on the oil and gas sector.</p>
+    </section>
+
+    <section id="about" style="animation-delay: 0.6s;">
+        <h2>About Us</h2>
+        <p>Ur Legal Solutions is a prestigious law firm dedicated to providing high-quality legal services in Iraq, specializing in oil and gas law, corporate law, and contract negotiations.</p>
+    </section>
+
+    <section id="team" style="animation-delay: 1.2s;">
+        <h2>Our Team</h2>
+        <p>Meet our experienced legal professionals dedicated to providing top-notch legal solutions.</p>
+        <ul>
+            <li><strong>Your Name</strong> – CEO & Senior Legal Counsel</li>
+            <li>Other team members (to be added)</li>
+        </ul>
+    </section>
+
+    <section id="consultation" style="animation-delay: 1.5s;">
+        <h2>Book a Consultation</h2>
+        <p>Get expert legal advice tailored to your needs.</p>
+        <button>Schedule a Consultation</button>
+    </section>
+
+    <section id="contact" style="animation-delay: 1.8s;">
+        <h2>Contact Us</h2>
+        <p>Email: contact@urlegalsolutions.com</p>
+        <p>Phone: +964 XXXXXXXX</p>
+        <p>Address: Baghdad, Iraq</p>
+    </section>
+
     <footer>
         <p>&copy; 2025 Ur Legal Solutions. All rights reserved.</p>
     </footer>
